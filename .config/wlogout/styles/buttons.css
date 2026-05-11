@@ -1,0 +1,47 @@
+#lock {
+    background-image: image(url("../icons/Lock.png"));
+}
+
+#lock:focus {
+    background-image: image(url("../icons/Lock_black.png"));
+}
+
+#logout {
+    background-image: image(url("../icons/logout.png"));
+
+}
+
+#logout:focus {
+    background-image: image(url("../icons/logout_black.png"));
+
+}
+
+#suspend {
+    background-image: image(url("../icons/Pause.png"));
+  
+}
+
+#suspend:focus {
+    background-image: image(url("../icons/Pause_black.png"));
+  
+}
+
+#shutdown {
+    background-image: image(url("../icons/Powerfill.png"));
+   
+}
+
+#shutdown:focus {
+    background-image: image(url("../icons/powerf_ill_black.png"));
+   
+}
+
+#reboot {    
+    background-image: image(url("../icons/reboot.png"));
+
+}
+
+#reboot:focus {    
+    background-image: image(url("../icons/reboot_black.png"));
+
+}
