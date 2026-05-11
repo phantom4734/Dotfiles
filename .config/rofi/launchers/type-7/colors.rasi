@@ -1,0 +1,9 @@
+* {
+    font:                        "GeistMono Nerd Font Propo Medium 11";
+    background:                  #0e1513;
+    background-alt:              #3f4946;
+    foreground:                  #dee4e1;
+    selected:                    #84d5c4;
+    active:                      #84d5c4;
+    urgent:                      #ffb4ab;
+}
