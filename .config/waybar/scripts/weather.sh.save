@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# الإعدادات
+CITY="Khamis_Mushait"
+CACHE_FILE="/tmp/weather_khamis.txt"
+TTL=1800 # 30 دقيقة
+
+# محاولة سحب البيانات
+fetch_weather() {
+    curl -s --connect-timeout 2 "wttr.in/${CITY}?format=%C|%t"
+}
+
+# التحقق من الكاش
+if [ -f "$CACHE_FILE" ] && [ $(( $(date +%s) - $(stat -c %Y "$CACHE_FILE") )) -lt $TTL ]; then
+    data=$(cat "$CACHE_FILE")
+else
+    data=$(fetch_weather)
+    if [ $? -eq 0 ] && [ -n "$data" ]; then
+        echo "$data" > "$CACHE_FILE"
+    elif [ -f "$CACHE_FILE" ]; then
+        data=$(cat "$CACHE_FILE")
+    else
+        echo "N/A|--" # فشل الاتصال ولا يوجد كاش
+        exit
+    fi
+fi
+
+# فصل الحالة عن الحرارة
+condition="${data%%|*}"
+temp="${data##*|}"
+
+# تحديد الكلاس والأيقونة بناءً على الحالة
+case "$condition" in
+    *Sunny*|*Clear*)          icon="󰖨"; class="sunny" ;;
+    *Partly*|*Cloud*|*Overcast*) icon="󰖐"; class="cloudy" ;;
+    *Rain*|*Drizzle*|*Shower*) icon="󰖗"; class="rainy" ;;
+    *Thunder*)               icon="󰙾"; class="thunder" ;;
+    *Snow*|*Ice*)            icon="󰖘"; class="snow" ;;
+    *Mist*|*Fog*|*Haze*)     icon="󰖑"; class="foggy" ;;
+    *)                       icon="󱓤"; class="default" ;;
+esac
+
+# السطر الأخير في السكربت (بدون مسافات إضافية داخل النص):
+printf '{"text":"%s %s", "class":"%s", "tooltip":"%s"}\n' "$icon" "${temp#+}" "weather-$class" "$condition"
+

@@ -1,0 +1,128 @@
+{
+    "layer": "top",
+    "margin-top": 10,
+    "position": "top",
+    "height": 34,
+    "spacing": 3,
+    
+    "modules-left": ["custom/launcher", "hyprland/workspaces", "hyprland/window"],
+    "modules-center": ["mpris", "custom/cava"],
+    "modules-right": ["tray", "pulseaudio","custom/weather", "clock", "network", "custom/notification"],
+
+    "custom/launcher": {
+        "format": "󰣇",
+        "on-click": "~/.config/rofi/launchers/type-7/launcher.sh",
+        "tooltip": false
+    },  
+
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-muted": " Muted",
+        "on-click": "pavucontrol",
+        "scroll-step": 5,
+        "tooltip": false,
+        "format-icons": {
+            "default": ["", "", ""]
+        }
+    },
+
+    "network": {
+        "format": "󰖩",
+        "format-wifi": "󰖩", 
+        "format-ethernet": "󰖩",
+        "format-disconnected": "󰖪",
+        "tooltip-format": "{ifname} via {gwaddr} \n{ipaddr}/{cidr}",
+        "on-click": "nm-connection-editor",
+        "tooltip": false
+    },
+
+    "tray": {
+        "icon-size": 20,
+        "spacing": 16,
+        "tooltip": false
+    },
+
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+
+    "mpris": {
+        "player": "spotify",  
+        "format": "{player_icon} {artist} - {title}",
+        "format-paused": " {artist} - {title}",
+        "max-length": 30,
+        "tooltip": false,
+        "player-icons": {
+            "default": "🎵",
+            "spotify": "",
+            "firefox": "",
+            "chrome": "",
+	    "brave": ""
+        },
+        "status-icons": {
+            "paused": ""
+        }
+    },
+
+    "clock": {
+        "format": "{:%I:%M %p}",
+        "format-alt": "{:%A, %B %d, %Y (%I:%M %p)}",
+        "tooltip": false
+    },
+
+    "group/hardware": {
+        "orientation": "horizontal",
+        "modules": [
+            "cpu",
+            "memory"
+        ]
+    },
+
+    "cpu": {
+        "interval": 10,
+        "format": "  {usage}%",
+        "tooltip": false
+    },
+
+    "memory": {
+        "interval": 2,
+        "format": "  {percentage}%",
+        "tooltip": false
+    },
+
+    "hyprland/window": {
+        "format": " {}",
+        "max-length": 50,
+        "separate-outputs": true,
+        "tooltip": false
+    },
+
+    "custom/cava": {
+        "format": "{}",
+        "exec": "~/.config/waybar/cava.sh"
+    },
+ 
+    "custom/weather": {
+        "exec": "curl -s 'wttr.in/Khamis_Mushait?format=%c+%t' | sed 's/  */ /'",
+        "interval": 1800,
+        "return-type": "text"
+    },
+
+}

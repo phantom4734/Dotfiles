@@ -1,0 +1,57 @@
+@import "colors/matugen.css";
+
+
+/* ==================== الإعدادات العامة للشريط ==================== */
+window#waybar {
+    background-color: rgba(30, 30, 46, 0.75);   /* خلفية شفافة داكنة */
+    border-radius: 12px;
+    color: @primary;                            /* نص عام */
+    font-family: "JetBrainsMono Nerd Font", sans-serif;
+    font-size: 14px;
+}
+
+/* ==================== تنسيق الكبسولات (المكونات) ==================== */
+#custom-launcher,
+#workspaces button,
+#window,
+#mpris,
+#custom-cava,
+#cpu,
+#memory,
+#pulseaudio,
+#custom-weather,
+#network,
+#clock,
+#custom-notification,
+#tray {
+    background-color: #181825;                 /* Mantle – خلفية كبسولة خفيفة */
+    padding: 2px 12px;
+    margin: 5px 3px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: @primary;
+}
+
+/* -------------------- ألوان العناصر الفريدة -------------------- */
+
+/* زر الإطلاق (Launcher) – أزرق فاتح ساحر */
+#custom-launcher {
+    color: @primary;    /* Blue */
+    font-size: 16px;
+    padding-right: 15px;
+}
+
+/* مساحات العمل – بنفسجي هادئ */
+#workspaces button {
+    color: @primary;    /* Lavender */
+}
+#workspaces button.active {
+    color: #11111b;                     /* Text (أبيض قريب للّون الأسود) */
+    background-color: @primary;         /* يضيء بالكامل عند التفعيل */
+}
+
+/* اسم النافذة المفتوحة – أبيض حليبي */
+#window {
+    color: @primary;                     /* Text */
+    background-color: transparent;    /* بدون خلفية لتقليل الفوضى */
+}
