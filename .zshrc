@@ -70,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting)
+plugins=(git fast-syntax-highlighting zsh-autosuggestions )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -108,9 +108,12 @@ alias ff='fastfetch --logo "$(find ~/Pictures/logo -type f | shuf -n 1)" --logo-
 export EDITOR=nvim
 export VISUAL=nvim
 alias vim='nvim'
-ff
+# سطر الـ alias المسؤول عن تشغيل فاست فيتش مع شعار آرش الكبير
+alias ff="fastfetch --logo arch"
+
 
 setopt HIST_IGNORE_DUPS          # لا يحفظ الأوامر المكررة
 setopt HIST_REDUCE_BLANKS       # يمسح الفراغات الزايدة
 setopt INC_APPEND_HISTORY       # يحفظ الأوامر فور كتابتها (هذا يحميك لو علق الجهاز)
 setopt SHARE_HISTORY            # يشارك التاريخ بين كل الترمينالات المفتوحة
+ff
